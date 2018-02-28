@@ -1,0 +1,53 @@
+@import "../common/const.less";
+.main-navigation {
+  position: fixed;
+  top: 0px;
+  z-index: 100;
+  width: 100%;
+  height: @BodyPaddingTopo;
+  line-height: @BodyPaddingTopo;
+  background-color: #F3726D;
+
+  .logo {
+    width: @logoWidth;
+    height: 100%;
+    padding-left: 10px;
+    float: left;
+  }
+
+  .rightContent {
+    width: calc(~"100% - @{logoWidth} - 10px");
+    float: left;
+    margin-left: 10px;
+    color: #FFFFFF;
+    font-size: 1.2em;
+    word-spacing: 2px;
+
+    .nav-item {
+      margin: 0 10px;
+      padding-bottom: 2px;
+      list-style: none;
+      display: inline;
+      line-height: 1.5;
+      font-weight: normal;
+    }
+    .nav-item:hover {
+      cursor: pointer;
+      text-decoration: none;
+      border-bottom: 2px solid #00bfff;
+    }
+    .nav-item:active {
+      color: #00bfff;
+    }
+    .active {
+      text-decoration: none;
+      border-bottom: 2px solid #00bfff;
+    }
+    .left {
+      float: right;
+      li {
+        list-style: none;
+      }
+    }
+  }
+}

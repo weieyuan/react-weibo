@@ -1,0 +1,72 @@
+@import "../common/const.less";
+
+.main-content {
+  font-size: 14px;
+  .new-info {
+    text-align: center;
+    vertical-align: middle;
+  }
+  .new-info:hover {
+    cursor: pointer;
+  }
+  .suspension {
+    position: fixed;
+    left: 33%;
+    top: @BodyPaddingTopo + 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .left-panel-custom {
+    position: relative;
+    background: #fff;
+    padding: 21px 30px;
+    .title {
+      margin-top: 0;
+      padding-bottom: 7px;
+      border-bottom: 1px solid #ebebeb;
+      margin-bottom: 21px;
+      position: relative;
+    }
+    .title::after {
+      content: "";
+      width: 90px;
+      height: 1px;
+      background: #f4645f;
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+    }
+  }
+
+  .anchor {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    right: 10px;
+    bottom: 10px;
+    color: #FFFFFF;
+    background-color: rgba(244, 100, 95, 0.6);
+    text-align: center;
+  }
+  .anchor:hover {
+    background-color: #F4645F;
+  }
+}
+
+.card-publish-head {
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+.card-publish {
+  border: none;
+  .panel-heading {
+    color: #1b7fb6;
+  }
+  .card-body {
+    padding: 0;
+    border: none;
+  }
+}
