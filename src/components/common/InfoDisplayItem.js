@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import utils from "@/widget/utils";
 import {cardConfig} from "@/config";
 import PropTypes from "prop-types";
+import "./InfoDisplayItem.less";
 
 class InfoDisplayItem extends Component {
     constructor(props) {
@@ -23,10 +24,12 @@ class InfoDisplayItem extends Component {
     }
 
     render() {
+        let picUrl = this.headPic();
+
         return (
             <div className="media">
                 <div className="media-left">
-                    <img className="media-object person-icon" src={import(this.headPic())} alt="..."/>
+                    <img className="media-object person-icon" src={require("../../images/person_default.png")} alt="..."/>
                 </div>
                 <div className="media-body">
                     <p>

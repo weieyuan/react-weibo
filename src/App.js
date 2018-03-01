@@ -20,7 +20,7 @@ class App extends Component {
         let oMockUser = {
             name: "游客",
             login: false,
-            pic: "@/images/person_default.png"
+            pic: "../../images/person_default.png"
         };
         store.mutations.setUser(store.state, oMockUser);
     }

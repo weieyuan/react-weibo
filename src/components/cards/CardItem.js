@@ -6,6 +6,7 @@ import InfoDisplayItem from "@/components/common/InfoDisplayItem.js";
 class CardItem extends Component {
     constructor(props) {
         super(props);
+        this.onClickRightBtn = this.onClickRightBtn.bind(this);
     }
 
     cardInfo() {
@@ -30,10 +31,14 @@ class CardItem extends Component {
         return oCardInfo;
     }
 
+    onClickRightBtn() {
+
+    }
+
     render() {
         return (
             <div className="panel panel-default panel-custom">
-                <InfoDisplayItem info={this.cardInfo()} />
+                <InfoDisplayItem info={this.cardInfo()} onClickRightBtn={this.onClickRightBtn}/>
             </div>
         );
     }
