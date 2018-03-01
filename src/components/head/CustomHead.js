@@ -1,35 +1,22 @@
 import React, {Component} from "react";
 import "./CustomHead.less";
 import logo from "@/images/logo.png";
+import store from "@/store";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+
+const CustomerLink = ({label, to}) => {
+    return (
+        <Route path={to} exact="true" children={({match}) => (
+            <Link className={match ? "nav-item active" : "nav-item"} to={to}>
+                <span className="glyphicon glyphicon-home"></span> {label}
+            </Link>
+        )}/>
+    );
+};
 
 class CustomHead extends Component {
     constructor(props) {
         super(props);
-        this.onClickMainPage = this.onClickMainPage.bind(this);
-        this.onClickRegistry = this.onClickRegistry.bind(this);
-        this.onClickLogin = this.onClickLogin.bind(this);
-        this.onClickLogOut = this.onClickLogOut.bind(this);
-        this.onClickTest = this.onClickTest.bind(this);
-    }
-
-    onClickMainPage(e) {
-        this.props.onClickMainPage(e);
-    }
-
-    onClickRegistry(e) {
-        this.props.onClickRegistry(e);
-    }
-
-    onClickLogin(e) {
-        this.props.onClickLogin(e);
-    }
-
-    onClickLogOut(e) {
-        this.props.onClickLogOut(e);
-    }
-
-    onClickTest(e) {
-        this.props.onClickTest(e);
     }
 
     render() {
@@ -40,27 +27,21 @@ class CustomHead extends Component {
                 </div>
                 <div className="rightContent">
                     <div className="container">
-                        <li className={this.props.curPage === "MainPage" ? "nav-item active" : "nav-item"}
-                            onClick={this.onClickMainPage}>
-                            <span className="glyphicon glyphicon-home"></span> 首页
-                        </li>
-                        <li className={this.props.curPage === "RegistryPage" ? "nav-item active" : "nav-item"}
-                            onClick={this.onClickRegistry}>
+                        <CustomerLink to="/MainPage" label="主页"></CustomerLink>
+                        <Link to="/RegistryPage" className="nav-item">
                             <span className="glyphicon glyphicon-registration-mark"></span> 注册
-                        </li>
-                        <li className={this.props.curPage === "LoginPage" ? "nav-item active" : "nav-item"}
-                            onClick={this.onClickLogin}>
+                        </Link>
+                        <Link to="/LoginPage" className="nav-item">
                             <span className="glyphicon glyphicon-log-in"></span> 登录
-                        </li>
-                        <li className={this.props.curPage === "LogOutPage" ? "nav-item active" : "nav-item"}
-                            onClick={this.onClickLogOut}>
+                        </Link>
+                        <Link to="/LogOutPage" className="nav-item">
                             <span className="glyphicon glyphicon-log-out"></span> 注销
-                        </li>
-                        <li className="nav-item" onClick={this.onClickTest}> Test
-                        </li>
+                        </Link>
+                        <Link to="/Test" className="nav-item"> Test
+                        </Link>
                         <div className="left">
                             <li>
-                                <span className="glyphicon glyphicon-user"></span> {this.props.username}
+                                <span className="glyphicon glyphicon-user"></span> {store.state.user.name}
                             </li>
                         </div>
                     </div>

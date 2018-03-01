@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import "./MainContent.less";
 import UserInputPanel from "@/components/common/UserInputPanel.js";
 import Cards from "@/components/cards/Cards.js";
-import CardMock, {getNewMsgs, addCard} from "@/mock/card_mock"
+import getCards, {getNewMsgs, addCard} from "@/mock/card_mock"
 
 class MainContent extends Component {
     constructor(props) {
@@ -23,7 +23,7 @@ class MainContent extends Component {
     componentWillMount() {
         if (this.state.debug) {
             this.setState({
-                cards: CardMock
+                cards: getCards()
             });
         }
 

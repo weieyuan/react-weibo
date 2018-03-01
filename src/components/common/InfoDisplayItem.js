@@ -24,33 +24,35 @@ class InfoDisplayItem extends Component {
     }
 
     render() {
-        let picUrl = this.headPic();
+        let RightBtnEle = this.props.info.rightBtns.map((rightBtn, index) => {
+            return (<React.Fragment key={index}>
+                <div className="remark-item-right" onClick={(e) => this.onClickRightBtn(rightBtn)}>
+                    <span className={"glyphicon " + rightBtn.icon}></span> ({rightBtn.label})
+                </div>
+                {index !== this.props.info.rightBtns.length - 1 ? (
+                    <div className="remark-item-right split">
+                        <div className="split-line"></div>
+                    </div>) : null}
+            </React.Fragment>);
+        });
 
         return (
             <div className="media">
                 <div className="media-left">
-                    <img className="media-object person-icon" src={require("../../images/person_default.png")} alt="..."/>
+                    <img className="media-object person-icon" src={require("../../images/person_default.png")}
+                         alt="..."/>
                 </div>
                 <div className="media-body">
                     <p>
-                        <b className="remark-person-name">{this.props.info.name}</b>
+                        <b className="remark-person-name">{this.props.info.name}:</b>
+                        <span>{this.props.info.msg}</span>
                     </p>
                     <div className="remark-foot">
                         <div className="remark-item-left">
                             <span
                                 className="glyphicon glyphicon-thumbs-time"></span> {utils.timeFormat(this.props.info.time)}
                         </div>
-                        {this.props.info.rightBtns.map((rightBtn, index) => {
-                            <React.Fragment key={index}>
-                                <div className="remark-item-right" onClick={(e) => this.onClickRightBtn(rightBtn)}>
-                                    <span className={"glyphicon " + rightBtn.icon}></span> ({rightBtn.label})
-                                </div>
-                                {index !== this.props.info.rightBtns.length - 1 ? (
-                                    <div className="remark-item-right split">
-                                        <div className="split-line"></div>
-                                    </div>) : null}
-                            </React.Fragment>
-                        })}
+                        {RightBtnEle}
                     </div>
                 </div>
             </div>

@@ -1,55 +1,66 @@
 import store from "@/store";
 
+let load = 0;
 const cards = [];
 const remarks = {};
 const replys = {};
 
-for (let i = 0; i < 10; i++) {
-    //一条微博
-    let card = {
-        id: i,
-        anonymous: true,
-        pic: store.state.user.pic,
-        name: store.state.user.name,
-        time: 1509526435275 + i * 1000,
-        praiseNum: 100, //点赞数
-        remarkNum: 10, //评论数
-        msg: "小区外的回民烧烤无证无照营业，占道经营，随意排放油烟和污水，严重影响市景市容，白天晚上两台发电机隆隆地响，噪音污染严重影响了附加居民的休息。"
-    };
-    cards.push(card);
-
-    let arrRemark = [];
-    for (let j = 0; j < 10; j++) {
-        //一条评论
-        let oRemark = {
-            id: j,
+function _load(){
+    for (let i = 0; i < 10; i++) {
+        //一条微博
+        let card = {
+            id: i,
             anonymous: true,
             pic: store.state.user.pic,
             name: store.state.user.name,
-            time: 1509526435275 + j * 1000,
-            msg: "素质真低，坚决抵制，无法无天，绝不姑息",
-            praiseNum: 300, //点赞数
-            replyNum: 10 //回复数
+            time: 1509526435275 + i * 1000,
+            praiseNum: 100, //点赞数
+            remarkNum: 10, //评论数
+            msg: "小区外的回民烧烤无证无照营业，占道经营，随意排放油烟和污水，严重影响市景市容，白天晚上两台发电机隆隆地响，噪音污染严重影响了附加居民的休息。"
         };
-        arrRemark.push(oRemark);
+        cards.push(card);
 
-        //回复
-        let arrReply = [];
-        for (let k = 0; k < 10; k++) {
-            let oReply = {
-                id: k,
+        let arrRemark = [];
+        for (let j = 0; j < 10; j++) {
+            //一条评论
+            let oRemark = {
+                id: j,
                 anonymous: true,
                 pic: store.state.user.pic,
                 name: store.state.user.name,
-                time: 1509526435275 + k * 1000,
-                msg: "干的漂亮",
-                praiseNum: 300 //点赞数
+                time: 1509526435275 + j * 1000,
+                msg: "素质真低，坚决抵制，无法无天，绝不姑息",
+                praiseNum: 300, //点赞数
+                replyNum: 10 //回复数
             };
-            arrReply.push(oReply);
+            arrRemark.push(oRemark);
+
+            //回复
+            let arrReply = [];
+            for (let k = 0; k < 10; k++) {
+                let oReply = {
+                    id: k,
+                    anonymous: true,
+                    pic: store.state.user.pic,
+                    name: store.state.user.name,
+                    time: 1509526435275 + k * 1000,
+                    msg: "干的漂亮",
+                    praiseNum: 300 //点赞数
+                };
+                arrReply.push(oReply);
+            }
+            replys[i + "_" + j] = arrReply;
         }
-        replys[i + "_" + j] = arrReply;
+        remarks[card.id] = arrRemark;
     }
-    remarks[card.id] = arrRemark;
+}
+
+function getCards(){
+    if(load === 0){
+        _load();
+        load = 1;
+    }
+    return cards;
 }
 
 function addCard(strMsg, bAnonymous) {
@@ -178,4 +189,4 @@ export {
     addReply
 };
 
-export default cards;
+export default getCards;

@@ -6,6 +6,9 @@ import InfoDisplayItem from "@/components/common/InfoDisplayItem.js";
 class CardItem extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            cardInner: props.card
+        };
         this.onClickRightBtn = this.onClickRightBtn.bind(this);
     }
 
@@ -17,21 +20,39 @@ class CardItem extends Component {
             msg: "",
             rightBtns: []
         };
-        Object.assign(oCardInfo, this.props.card);
+        Object.assign(oCardInfo, this.state.cardInner);
         oCardInfo.rightBtns.push({
             key: "praise",
-            label: this.props.card.praiseNum,
+            label: this.state.cardInner.praiseNum,
             icon: "glyphicon-thumbs-up"
         });
         oCardInfo.rightBtns.push({
             key: "remark",
-            label: this.props.card.remarkNum,
+            label: this.state.cardInner.remarkNum,
             icon: "glyphicon-comment"
         });
         return oCardInfo;
     }
 
-    onClickRightBtn() {
+    onClickRightBtn(oRightBtn) {
+        if (oRightBtn.key === "praise") {
+            this.onClickPraise();
+        }
+        else if (oRightBtn.key === "remark") {
+            this.onClickRemark();
+        }
+    }
+
+    onClickPraise() {
+        this.setState((prevState, props) => {
+            prevState.cardInner.praiseNum += 1;
+            return {
+                cardInner: prevState.cardInner
+            }
+        });
+    }
+
+    onClickRemark() {
 
     }
 

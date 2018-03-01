@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
 function hoc(SrcComponent, oConfig) {
     return class extends Component {
@@ -87,6 +88,12 @@ class Mouse extends Component {
     }
 }
 
+function Home(props) {
+    return (
+        <div>This is home page!</div>
+    );
+}
+
 class Test extends Component {
     constructor(props) {
         super(props);
@@ -95,7 +102,7 @@ class Test extends Component {
     render() {
         let C1Wrapper = hoc(C1, {name: "C1"});
         let C2Wrapper = hoc(C2, {name: "C2"});
-        let oFun = function(state){
+        let oFun = function (state) {
             return (
                 <p>x: {state.x}, y: {state.y}</p>
             );
@@ -104,7 +111,13 @@ class Test extends Component {
             <div>Test
                 <C1Wrapper/>
                 <C2Wrapper/>
-                <Mouse render={oFun} />
+                <Mouse render={oFun}/>
+                <Router>
+                    <div>
+                        <Link to="/home">home</Link>
+                        <Route exact path="/home" component={Home}></Route>
+                    </div>
+                </Router>
             </div>
         );
     }
