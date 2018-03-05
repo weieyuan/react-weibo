@@ -53,7 +53,7 @@ class CardItem extends Component {
     }
 
     onClickRemark() {
-
+        this.props.onClickRemark && this.props.onClickRemark(this.state.cardInner);
     }
 
     render() {
@@ -66,7 +66,8 @@ class CardItem extends Component {
 }
 
 CardItem.propTypes = {
-    card: PropTypes.object
+    card: PropTypes.object,
+    onClickRemark: PropTypes.func
 };
 
 export default CardItem;

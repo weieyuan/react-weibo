@@ -17,6 +17,7 @@ class MainContent extends Component {
         this.onClickNewMsg = this.onClickNewMsg.bind(this);
         this.onMousewheel = this.onMousewheel.bind(this);
         this.onClickAddCardBtn = this.onClickAddCardBtn.bind(this);
+        this.onClickRemark = this.onClickRemark.bind(this);
     }
 
     //region 生命周期
@@ -84,6 +85,10 @@ class MainContent extends Component {
         //清除输入框中的内容
         this.inputEle.clearInputMessage();
     }
+
+    onClickRemark(oCard){
+        this.props.history.push(`/RemarkDetails/${oCard.id}`);
+    }
     //endregion
 
     render() {
@@ -117,11 +122,11 @@ class MainContent extends Component {
                         <div className="panel panel-default card-publish">
                             <div className="panel-heading"><strong>有什么想吐槽的，一吐为快吧</strong></div>
                             <div className="panel-body card-body">
-                                <UserInputPanel btnName="发布" onClickAddCardBtn={this.onClickAddCardBtn} ref={(el) => this.inputEle=el}/>
+                                <UserInputPanel btnName="发布" onClickBtn={this.onClickAddCardBtn} ref={(el) => this.inputEle=el}/>
                             </div>
                         </div>
 
-                        <Cards cards={this.state.cards}/>
+                        <Cards cards={this.state.cards} onClickRemark={this.onClickRemark}/>
                     </div>
                     <div className="col-md-4">
                         <div className="panel panel-default left-panel-custom">

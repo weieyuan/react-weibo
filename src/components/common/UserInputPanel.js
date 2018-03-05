@@ -22,7 +22,7 @@ class UserInputPanel extends Component {
     }
 
     onClickBtn(e) {
-        this.props.onClickAddCardBtn(this.state.inputMessage, this.state.checked);
+        this.props.onClickBtn && this.props.onClickBtn(this.state.inputMessage, this.state.checked);
     }
 
     checkedChange(e) {
@@ -39,6 +39,7 @@ class UserInputPanel extends Component {
             inputMessage: ""
         });
     }
+
     //endregion
 
     render() {
@@ -72,7 +73,7 @@ class UserInputPanel extends Component {
 
 UserInputPanel.propTypes = {
     btnName: PropTypes.string.isRequired,
-    onClickAddCardBtn: PropTypes.func.isRequired
+    onClickBtn: PropTypes.func.isRequired
 };
 
 export default UserInputPanel;

@@ -5,11 +5,17 @@ import PropTypes from "prop-types";
 class Cards extends Component {
     constructor(props) {
         super(props);
+
+        this.onClickRemark = this.onClickRemark.bind(this);
+    }
+
+    onClickRemark(oCard){
+        this.props.onClickRemark(oCard);
     }
 
     render() {
         let CardElements = this.props.cards.map((oCard) => {
-            return <CardItem key={oCard.id} card={oCard}/>
+            return <CardItem key={oCard.id} card={oCard} onClickRemark={this.onClickRemark}/>
         });
 
         return (
@@ -21,7 +27,8 @@ class Cards extends Component {
 }
 
 Cards.propTypes = {
-    cards: PropTypes.array.isRequired
+    cards: PropTypes.array.isRequired,
+    onClickRemark: PropTypes.func
 };
 
 export default Cards;

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.less';
 import CustomHead from "@/components/head/CustomHead.js";
 import MainContent from "@/components/body/MainContent.js";
+import RemarkDetails from "@/components/body/RemarkDetails";
 import Test from "@/components/test/Test";
 import store from "@/store";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
@@ -32,8 +33,9 @@ class App extends Component {
                     <CustomHead />
                     <div className="content">
                         <div className="container main-container">
-                            <Route path="/MainPage" component={MainContent}></Route>
-                            <Route path="/Test" component={Test}></Route>
+                            <Route path="/" exact component={MainContent}></Route>
+                            <Route path="/RemarkDetails/:cardId" exact component={RemarkDetails}></Route>
+                            <Route path="/Test" exact component={Test}></Route>
                         </div>
                     </div>
                 </div>
