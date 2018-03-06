@@ -3,6 +3,7 @@ import CardItem from "@/components/cards/CardItem.js";
 import UserInputPanel from "@/components/common/UserInputPanel.js";
 import Remarks from "@/components/remark/Remarks.js";
 import {getCardInfoById, getRemarksByCardId, addRemark} from "@/mock/card_mock";
+import store from "@/store";
 
 class RemarkDetails extends Component {
     constructor(props) {
@@ -41,6 +42,11 @@ class RemarkDetails extends Component {
         });
     }
 
+    componentDidMount(){
+        console.log("RemarkDetails componentDidMount");
+        store.mutations.setCardId(store.state, this.props.match.params.cardId);
+    }
+
     //endregion
 
     //region callback
@@ -53,6 +59,7 @@ class RemarkDetails extends Component {
                 card: oCard
             }
         });
+        addRemark(this.props.match.params.cardId, strMsg, bAnonymous);
         //清除input
         this.inputEl.clearInputMessage();
     }

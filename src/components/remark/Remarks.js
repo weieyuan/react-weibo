@@ -26,5 +26,4 @@ Remarks.propTypes = {
     remarks: PropTypes.array.isRequired
 };
 
-
 export default Remarks;
