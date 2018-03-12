@@ -5,9 +5,6 @@ const store = {
             name: "",
             pic: "",
             login: false
-        },
-        RemarkDetails: {
-            cardId: undefined
         }
     },
     mutations: {
@@ -16,9 +13,6 @@ const store = {
         },
         setUser(state, oUser) {
             state.user = oUser;
-        },
-        setCardId(state, iCardId){
-            state.RemarkDetails.cardId = iCardId;
         }
     }
 };

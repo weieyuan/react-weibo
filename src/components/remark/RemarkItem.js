@@ -2,9 +2,9 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import InfoDisplayItem from "@/components/common/InfoDisplayItem.js";
 import {getReplysById, addReply} from "@/mock/card_mock";
-import store from "@/store";
 import UserInputPanel from "@/components/common/UserInputPanel.js";
 import Replys from "@/components/reply/Replys.js";
+import Store from "@/redux/store";
 
 class RemarkItem extends Component {
     constructor(props) {
@@ -45,7 +45,7 @@ class RemarkItem extends Component {
         }, () => {
             if (this.state.remarkInner.replyNum != this.state.replys.length) {
                 this.setState({
-                    replys: getReplysById(store.state.RemarkDetails.cardId, this.state.remarkInner.id)
+                    replys: getReplysById(Store.getState().RemarkDetails.cardId, this.state.remarkInner.id)
                 });
             }
         });
@@ -58,7 +58,8 @@ class RemarkItem extends Component {
                 remarkInner: prevState.remarkInner
             };
         });
-        addReply(store.state.RemarkDetails.cardId, this.state.remarkInner.id, strMsg, bAnonymous);
+        console.log(Store.getState().RemarkDetails.cardId);
+        addReply(Store.getState().RemarkDetails.cardId, this.state.remarkInner.id, strMsg, bAnonymous);
         this.inpuEl.clearInputMessage();
     }
 
@@ -90,8 +91,9 @@ class RemarkItem extends Component {
         if (this.state.showReply) {
             oReplyEle = (
                 <div className="reply-custom">
-                    <UserInputPanel ref={(el) => this.inpuEl=el} btnName="回复" onClickBtn={this.addReply}></UserInputPanel>
-                    <Replys replys={this.state.replys}></Replys>
+                    <UserInputPanel ref={(el) => this.inpuEl = el} btnName="回复"
+                                    onClickBtn={this.addReply}></UserInputPanel>
+                    {this.state.replys.length ? <Replys replys={this.state.replys}></Replys> : null}
                 </div>
             );
         }

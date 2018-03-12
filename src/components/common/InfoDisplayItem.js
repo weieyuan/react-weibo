@@ -44,7 +44,7 @@ class InfoDisplayItem extends Component {
                 </div>
                 <div className="media-body">
                     <p>
-                        <b className="remark-person-name">{this.props.info.name}:</b>
+                        <b className="remark-person-name">{this.props.info.anonymous ? cardConfig.DEFAULT_NAME : this.props.info.name}:</b>
                         <span>{this.props.info.msg}</span>
                     </p>
                     <div className="remark-foot">

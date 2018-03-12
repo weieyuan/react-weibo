@@ -3,7 +3,8 @@ import CardItem from "@/components/cards/CardItem.js";
 import UserInputPanel from "@/components/common/UserInputPanel.js";
 import Remarks from "@/components/remark/Remarks.js";
 import {getCardInfoById, getRemarksByCardId, addRemark} from "@/mock/card_mock";
-import store from "@/store";
+import Store from "@/redux/store";
+import {setCardId} from "@/redux/actions";
 
 class RemarkDetails extends Component {
     constructor(props) {
@@ -42,15 +43,14 @@ class RemarkDetails extends Component {
         });
     }
 
-    componentDidMount(){
-        console.log("RemarkDetails componentDidMount");
-        store.mutations.setCardId(store.state, this.props.match.params.cardId);
+    componentDidMount() {
+        Store.dispatch(setCardId(this.props.match.params.cardId));
     }
 
     //endregion
 
     //region callback
-    onClickBtn(strMsg, bAnonymous){
+    onClickBtn(strMsg, bAnonymous) {
         //评论+1
         this.setState((prevState, props) => {
             let oCard = prevState.card;
@@ -63,13 +63,14 @@ class RemarkDetails extends Component {
         //清除input
         this.inputEl.clearInputMessage();
     }
+
     //endregion
 
     render() {
         return (
             <div>
                 <CardItem card={this.state.card}/>
-                <UserInputPanel btnName="评论" onClickBtn={this.onClickBtn} ref={(el) => this.inputEl=el}/>
+                <UserInputPanel btnName="评论" onClickBtn={this.onClickBtn} ref={(el) => this.inputEl = el}/>
                 <Remarks remarks={this.state.remarks}/>
             </div>
         );
