@@ -3,3 +3,8 @@
 
 ## Demo
 ![](./demo/demo.gif)
+
+## 使用技术
+* react
+* react-router
+* redux

@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import Portals from "./Portals";
+import ErrorBoundary from "./ErrorBoundary";
+import ErrorBoundaryChild from "./ErrorBoundaryChild";
 
 function hoc(SrcComponent, oConfig) {
     return class extends Component {
@@ -108,7 +111,7 @@ class Test extends Component {
             );
         };
         return (
-            <div>Test
+            <div>
                 <C1Wrapper/>
                 <C2Wrapper/>
                 <Mouse render={oFun}/>
@@ -118,6 +121,10 @@ class Test extends Component {
                         <Route exact path="/home" component={Home}></Route>
                     </div>
                 </Router>
+                <Portals></Portals>
+                <ErrorBoundary>
+                    <ErrorBoundaryChild/>
+                </ErrorBoundary>
             </div>
         );
     }
